@@ -17,7 +17,7 @@ public class MqServiceImpl implements MqService {
 
     @Override
     public boolean sendQueue(String queueName, String msg) {
-        log.info("MqServiceImpl sendQueue name=[{}], msg=[{}]", queueName, msg);
+        log.info("sendQueue name=[{}], msg=[{}]", queueName, msg);
         if (StringUtils.isBlank(queueName) || StringUtils.isBlank(msg)) {
             return false;
         }
@@ -32,7 +32,7 @@ public class MqServiceImpl implements MqService {
 
     @Override
     public boolean sendTopic(String topicName, String msg) {
-        log.info("MqServiceImpl sendTopic name=[{}], msg=[{}]", topicName, msg);
+        log.info("sendTopic name=[{}], msg=[{}]", topicName, msg);
         if (StringUtils.isBlank(topicName) || StringUtils.isBlank(msg)) {
             return false;
         }
@@ -40,7 +40,7 @@ public class MqServiceImpl implements MqService {
             jmsMessagingTemplate.convertAndSend(new ActiveMQTopic(topicName), msg);
             return true;
         } catch (Exception e) {
-            log.error("sendQueue error. topicName:{}, msg:{}.", topicName, msg, e);
+            log.error("sendTopic error. topicName:{}, msg:{}.", topicName, msg, e);
         }
         return false;
     }
